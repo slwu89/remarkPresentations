@@ -1,4 +1,2 @@
-node_modules
-out
-vendor
-*.swp
+.DS_Store
+*.DS_Store

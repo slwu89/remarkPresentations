@@ -196,6 +196,54 @@ Often we are most interested in how models can be fit to data. By fitting models
 ]
 
 ---
+.left-column[
+## Mathematical Models in Epidemiology
+## Differential Equation Models
+]
+.right-column[
+What do different models look like in "reality"? What are we really trying to discriminate between?
+
+<img src="images/responseSig.png" height="160" width="300">
+
+<img src="images/responseHolling.png" height="140" width="300">
+
+- Two different rate limiting functions for how mosquito life cycle parameters are affected by vector interventions for malaria control.
+
+- By comparing models intelligently ("best fitting" model is not always biologicall plausible!) we can derive a mechanistic model of how specific processes occur in nature.
+
+- Models force us to be deliberate in our assumptions, and may help expose flaws in our thinking!
+]
+---
+.left-column[
+## Mathematical Models in Epidemiology
+## Stochastic Models
+]
+.right-column[
+Despite their usefulness, sometimes deterministic models do not provide an accurate enough depiction of reality. For this reason there are a variety of stochastic modeling methods.
+
+- Models based on Markov processes:
+
+  - Gillespie algorithm: simulates a "statistically exact" trajectory of a continuous-time Markov process. This is a massive field of models that simulate discrete events rather than average rates.
+  <!-- <img src="images/gillespieCode.png" height="120" width="380"> -->
+
+  - Matrix Population Models: model populations moving through life stages as a discrete-time Markov process.
+
+- Cellular Automata:
+
+  - Often used to model the dynamics of competing pathogens (such as development of drug-resistance), discrete-time (usually), and explicitly spatial.
+  <img src="images/migrationCA.gif" height="240" width="240">
+
+]
+---
+.left-column[
+## Mathematical Models in Epidemiology
+## Stochastic Models
+]
+.right-column[
+Network Models encompass a vast variety of models and modeling methods. They can run in continuous or discrete time
+  <iframe src="images/sirERGM.html" width="512px" height="512px" frameBorder="0"></iframe>
+]
+---
 template: inverse
 
 ## Fitting Models to Data
@@ -205,6 +253,10 @@ Maximum Likelihood Estimation and Bayesian Inference
 .left-column[
   ## Bayesian Inference
 ]
+.right-column[
+Bayesian Inference
+]
+
 ---
 .left-column[
   ## Bayesian Inference

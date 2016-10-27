@@ -221,7 +221,7 @@ What do different models look like in "reality"? What are we really trying to di
 .right-column[
 Despite their usefulness, sometimes deterministic models do not provide an accurate enough depiction of reality. For this reason there are a variety of stochastic modeling methods.
 
-- Models based on Markov processes:
+- Models based on Markov processes (AKA: space-state models):
 
   - Gillespie algorithm: simulates a "statistically exact" trajectory of a continuous-time Markov process. This is a massive field of models that simulate discrete events rather than average rates.
   <!-- <img src="images/gillespieCode.png" height="120" width="380"> -->
@@ -266,7 +266,17 @@ Agent-based models can help us understand extremely detailed features of disease
 
 -Below is a simulated transmission chain of <i>Plasmodium falciparum</i> parasite in a community. We can see how distribution of hosts and vectors changes at each generation.
 
-  <iframe src="images/mainChain.html" width="460px" height="460px" frameBorder="0"></iframe>
+  <iframe src="images/MASHchain.html" width="460px" height="460px" frameBorder="0"></iframe>
+]
+---
+.left-column[
+## Mathematical Models in Epidemiology
+## Agent-based Models
+]
+.right-column[
+Agent-based models are incredibly computationally intensive, compounding the problem of fitting stochastic models to data.
+
+<img src="images/MASHsample.png" width="600" height="478">
 ]
 ---
 template: inverse
@@ -279,50 +289,81 @@ Maximum Likelihood Estimation and Bayesian Inference
   ## Bayesian Inference
 ]
 .right-column[
-Bayesian Inference
+Bayesian Inference depends on Bayes' thereom:
+
+- Bayes Thereom: <div lang="latex"> P(\theta | Y) = \frac{\mathcal{L}(\theta | Y) \times P(\theta)}{\int {\mathcal{L}(\theta | Y) \times P(\theta) d\theta}} </div>
+
+- Note that the bottom of the RHS is the likelihood times the prior with the parameters &theta; integrated out, thus it is the probability of the data P(Y), also called the normalizing constant.
+
+- In any real situation, &theta; will be high dimensional. Additionally we may not be able to write an analytically tractable form of the likelihood function, making it impossible to compute the normalizing constant.
+
+- But we realize that: <div lang="latex"> P(\theta | Y) \propto  \mathcal{L}(\theta | Y) \times P(\theta) </div>
+
+- And we can proceed with Bayesian inference because all models (ie; all parameterizations of &theta;) we are comparing are being divided by the same normalizing constant. So we can ignore the constant and still compare models. This is what Markov Chain Monte Carlo is doing when it is exploring parameter space.
+
+- But what is MCMC actually doing...? (black magic? making your computer melt?)
+
 ]
+---
+.left-column[
+  ## Bayesian Inference
+  ## Markov Chain Monte Carlo
+]
+Adaptive MCMC algorithm exploring two dimensional parameter space
+
+<img src="images/mcmcTrace.gif" width="480" height="480">
 
 ---
 .left-column[
   ## Bayesian Inference
+  ## Markov Chain Monte Carlo
+]
+But...fancy algorithms run into problems too. It's important to know how to diagnose these problems, and know if it is bad data, unrealistic model, or a poorly behaved MCMC run.
+
+<img src="images/mcmcSampling.png" width="500" height="500">
+
+---
+.left-column[
+  ## Bayesian Inference
+  ## Markov Chain Monte Carlo
 ]
 .right-column[
-Code blocks can be syntax highlighted by specifying a language from the set of [supported languages](https://github.com/gnab/remark/wiki/Configuration#highlighting).
+MCMC works great for exploring parameters space of deterministic models, because a single model run will give us the likelihood function we need.
 
-Using [GFM](http://github.github.com/github-flavored-markdown/) fenced code blocks you can easily specify highlighting language:
+- But when you have a stochastic model, the output of the likelihood function is itself a random variable...
 
-.pull-left[
+- So we need to use Monte Carlo techniques to estimate the likelihood of &theta; <i> at each iteration </i> of MCMC.
 
-<pre><code>```javascript
-function add(a, b)
-  return a + b
-end
-```</code></pre>
+- This makes fitting stochastic models to data extremely difficult. But statisticians are clever people...
 ]
-.pull-right[
-
-<pre><code>```ruby
-def add(a, b)
-  a + b
-end
-```</code></pre>
+---
+.left-column[
+  ## Bayesian Inference
+  ## Particle Filter
 ]
+.right-column[
+Particle Filters (Sequential Monte Carlo) are algorithms that allow us to estimate the likelihood of a specific &theta; in a stochastic model. They are derived from Kalman Filters (incidentially, Kalman Filters are what got NASA to the moon in the 60s...)
 
-A number of highlighting [styles](https://github.com/gnab/remark/wiki/Configuration#highlighting) are available, including several well-known themes from different editors and IDEs.
-
+- The likelihood can be estimated (idea of Monte Carlo techniques: expectations of functions can be approximated by sample means of many random variables): <div lang="latex"> \hat{P}(Y|\theta) = P(y_{1}|\theta) \times \prod_{t=1}^{T-1}P(y_{t+1}|y_{t},\theta) </div>
 ]
+<img src="images/particleFilter.gif" height="400" width="400">
+
 ---
 name: last-page
 template: inverse
 
-## That's all folks (for now)!
+## Thanks everybody!!!
 
 Slideshow created using [remark](http://github.com/gnab/remark).
+
+Most code available at my gitHub: https://github.com/slwu89 (No guarantees it works or makes sense!)
     </textarea>
     <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
     </script>
     <script>
       var slideshow = remark.create();
     </script>
+    <!-- load package for LaTex in .html files -->
+    <script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
   </body>
 </html>

@@ -249,6 +249,30 @@ Network Models encompass a vast variety of models. They can run in continuous or
 ---
 .left-column[
 ## Mathematical Models in Epidemiology
+## Human Movement Models
+]
+.right-column[
+In population health we are often concerned with the flow of individuals between communities.
+
+- Flows of people between communities are affected by many aspects: ecological (is it a nice place to live?), social (is my family there? am I more comfortable there?), economic (can I find jobs there? where can I afford to live?), and other factors.
+
+- When humans are hosts for pathogens, understanding flows between communities can help us understand where to concentrate resources (eg; vector control, anti-virals, vaccines, etc).
+
+We fitted gravity and radiation models with MCMC to survey and cell phone data in Burkina Faso, Mali, Tanzania, and Zambia.
+
+<img src="images/movement.png" width="429" height="274">
+]
+---
+.left-column[
+## Mathematical Models in Epidemiology
+## Human Movement Models
+]
+.right-column[
+<img src="images/movementEmpirical.png" width="594" height="435">
+]
+---
+.left-column[
+## Mathematical Models in Epidemiology
 ## Agent-based Models
 ]
 .right-column[
@@ -287,6 +311,7 @@ Maximum Likelihood Estimation and Bayesian Inference
 ---
 .left-column[
   ## Bayesian Inference
+  ## Markov Chain Monte Carlo
 ]
 .right-column[
 Bayesian Inference depends on Bayes' thereom:
@@ -347,16 +372,22 @@ Particle Filters (Sequential Monte Carlo) are algorithms that allow us to estima
 - The likelihood can be estimated (idea of Monte Carlo techniques: expectations of functions can be approximated by sample means of many random variables): <div lang="latex"> \hat{P}(Y|\theta) = P(y_{1}|\theta) \times \prod_{t=1}^{T-1}P(y_{t+1}|y_{t},\theta) </div>
 ]
 <img src="images/particleFilter.gif" height="400" width="400">
-
+---
+.left-column[
+  ## Likelihood-based Inference
+  ## MLE
+]
 ---
 name: last-page
 template: inverse
 
 ## Thanks everybody!!!
 
+Acknowledgements: Hector Sanchez, Samson Kiware, John Marshall, David Smith, and others.
+
 Slideshow created using [remark](http://github.com/gnab/remark).
 
-Most code available at my gitHub: https://github.com/slwu89 (No guarantees it works or makes sense!)
+Most code available at my GitHub: https://github.com/slwu89 (No guarantees it works or makes sense!)
     </textarea>
     <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
     </script>

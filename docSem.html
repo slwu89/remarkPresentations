@@ -337,6 +337,7 @@ Bayesian Inference depends on Bayes' thereom:
 Adaptive MCMC algorithm exploring two dimensional parameter space
 
 <img src="images/mcmcTrace.gif" width="480" height="480">
+<!-- <img src="http://i.imgur.com/XoYfbD2.gif" width="480" height="480"> -->
 
 ---
 .left-column[
@@ -369,7 +370,7 @@ MCMC works great for exploring parameters space of deterministic models, because
 .right-column[
 Particle Filters (Sequential Monte Carlo) are algorithms that allow us to estimate the likelihood of a specific &theta; in a stochastic model. They are derived from Kalman Filters (incidentially, Kalman Filters are what got NASA to the moon in the 60s...)
 
-- The likelihood can be estimated (idea of Monte Carlo techniques: expectations of functions can be approximated by sample means of many random variables): <div lang="latex"> \hat{P}(Y|\theta) = P(y_{1}|\theta) \times \prod_{t=1}^{T-1}P(y_{t+1}|y_{t},\theta) </div>
+- The likelihood can be estimated (idea of Monte Carlo techniques: expectations of functions can be approximated by sample means of many random variables): <div lang="latex"> \hat{P}(Y|\theta) = P(y_{1} | \theta) \times \prod_{t=1}^{T-1}P(y_{t+1}|y_{t},\theta) </div>
 ]
 <img src="images/particleFilter.gif" height="400" width="400">
 ---

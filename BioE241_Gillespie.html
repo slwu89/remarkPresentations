@@ -29,10 +29,11 @@
       .red { color: #fa0000; }
       .large { font-size: 2em; }
       a, a > code {
-        color: rgb(249, 38, 114);
+        color: #f9266f;
         text-decoration: none;
       }
       code {
+        color: #f9266f;
         background: #e7e8e2;
         border-radius: 5px;
       }
@@ -115,7 +116,7 @@
         width: 75%;
         float: right;
         padding-top: 1em;
-        font-size: 0.8em;
+        font-size: 65%;
       }
     </style>
   </head>
@@ -132,10 +133,10 @@ Sean Wu
 ---
 layout: false
 .left-column[
-  ## The Gillespie Algorithm
+  ## Gillespie Algorithm
 ]
 .right-column[
-  The Gillespie Algorithm belongs to a type of simulation algorithm called exact stochastic simulation algorithms. It simulates a trajectory from a continuous-time Markov process on a discrete state space.
+  The Gillespie Algorithm belongs to a type of simulation algorithm called exact stochastic simulation algorithms. It simulates a trajectory from a continuous-time Markov process on a discrete state space (discrete event simulation).
 
 - The Gillespie Algorithm was originally developed between 2 papers in 1976 and 1977 for simulation of biochemical reactions, although in Dan Gillespie's 1977 paper he uses the Lotka-Volterra model as one of the examples.
 
@@ -146,7 +147,7 @@ layout: false
 ]
 ---
 .left-column[
-  ## The Gillespie Algorithm
+  ## Gillespie Algorithm
 ]
 .right-column[
 There are two main ways to implement the original algorithm, both are statistically equivalent but of different efficiency in the number of random numbers that must be generated.
@@ -165,8 +166,30 @@ There are two main ways to implement the original algorithm, both are statistica
 .right-column[
 While the standard algorithm assumes spatial homogeneity/homogeneous mixing population, networks are a generic way to represent distance between individuals, be it social, physical, or some other form of distance.
 
+- In epidemiology, networks can be useful to simulate transmission of disease. More complex network structures such as bipartite networks can simulate interactions between vectors and hosts.
 
+- Nodes/vertices in the network represent individuals whom can belong to one in a set of states, for example <i>node<sub>i</sub> &isin; {S,I,R}</i>.
 
+- On a network, nodes can transition from S to I if they are in contact with at least one I node. I nodes will recover to become R independent of edges (in this formulation of the model).
+
+- Three types of node transitions/events:
+
+1.  Spontaneous transitions: independent of local network toplogy (I to R).
+2.  Contact-dependent transitions: dependent on local network toplogy (S to I).
+3.  Mixed transitions: node can transition spontaneously or be mediated by other local nodes.
+
+<img src="images/gillespie2.png" height="250">
+]
+---
+.left-column[
+  ## Temporal Gillespie Algorithm
+]
+.right-column[
+Temporal Gillespie Algorithm on static networks
+
+- For each allowed event at time <i>t</i>, calculate the cumulative transition rate (the sum of all individual hazard rates)
+
+<code> hi = false </code>
 ]
 ---
 name: last-page
